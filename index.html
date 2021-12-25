@@ -10,7 +10,13 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
     crossorigin="anonymous"
     />
+    <script src="money.js"></script>
     <title>記帳小天地</title>
+    <style>
+        .list-group-horizontal .list-group-item {
+            
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,11 +27,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+            
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">回首頁</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">新增</a>
+                <a class="nav-link" href="new.html">新增</a>
         </li>
             
             <li class="nav-item">
@@ -36,41 +40,79 @@
         </div>
     </nav>
     <div class="container">
+        
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                <h2>總支出</h2>
+                <h2>支出清單</h2>
             </div>
         </div>
         <div class="row ">
             <div class="col-md-4  offset-md-2 justify-content-start ">
-                <button type="button" class="btn btn-outline-primary  ">新增支出</button>       
+                <a href="new.html" class="btn btn-outline-primary">新增支出</a>
             </div>
-            <div class="col-md-4 text-center ">
-                
-            </div>
+            <div class="col-md-4 text-center ">    
+        </div>
+
         </div>
         <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <ul class="list-group ">
-                    <li class="list-group-item">
-                        <div class="col-1"></div>
-                        <div class="col-5"></div>
-                        <div class="col-2"></div>
-                        <div class="col-4"></div>
-                    </li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+            <div class="col-md-8 offset-md-2 moneyprint">
+                <ul class='list-group list-group-horizontal'>
+                    <li class="list-group-item flex-fill align-content-cent ">名稱</li>
+                    <li class="list-group-item align-content-cent ">類別</li>
+                    <li class="list-group-item align-content-cent ">日期</li>
+                    <li class="list-group-item align-content-cent">花費金額</li>
                 </ul>
             </div>
         </div>
+
+        <div class="row ">
+            <div class="col-md-4  offset-md-2  ">
+                
+            </div>
+            <div class="col-md-4  offset-md-2  ">
+                <a href="index.html" class="btn btn-outline-primary justify-content-center  " onclick="deleteAll()">刪除全部</a>
+            </div>
+        
+        </div>
+        
     </div>
 
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"
-    ></script>
+    >
+    </script>
+    <script>
+        setMoneyItem()
+
+        if (localStorage.getItem("money_item")) {
+            money_item = JSON.parse(localStorage.getItem("money_item"));
+        }
+        function setMoneyItem() {
+            
+            const moneyprint = document.querySelector('.moneyprint');
+            
+            
+            for (let $i = 0; $i < money_item.length; $i++) {
+                const ul=document.createElement('UL');
+                ul.setAttribute('class', 'list-group list-group-horizontal');
+                ul.innerHTML=`
+                    <li class="list-group-item flex-fill align-content-cent ">${money_item[$i]["name"]}</li>
+                    <li class="list-group-item  align-content-cent">${money_item[$i]["Classification"]}</li>
+                    <li class="list-group-item  align-content-cent">${money_item[$i]["Date_data"]}</li>
+                    <li class="list-group-item  align-content-cent">${money_item[$i]["Cost_value"]}</li>
+                `
+                moneyprint.appendChild(ul)
+        
+            
+            }
+            
+            
+        }
+        function deleteAll(){
+            localStorage.clear()
+        }
+    </script>
 </body>
 </html>

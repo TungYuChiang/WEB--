@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+    />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="money.js"></script>
+    <title>記帳小天地</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">東東記帳</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">回首頁</a>
+            </li>
+            
+            
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h2>請輸入您的支出</h2>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 text-center ">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form form name="form" id="form">
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">名稱</label>
+                        <textarea class="form-control" name="cost_name" rows="1"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>選擇類別</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="Classification">
+                            <option>飲食</option>
+                            <option>生活</option>
+                            <option>投資理財</option>
+                            <option>學習</option>
+                            <option>娛樂</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label >選擇日期:</label>
+                        <div class="input-group date" id='date1'>
+                            <input type="text" class="form-control" name="Date_data" />
+                            <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">支出金額</label>
+                        <textarea class="form-control" name="Cost_value" rows="1"></textarea>
+                    </div>
+                    <a href="index.html" class="btn btn-primary" onclick="processFormData()">新增支出</a>
+
+                    
+                    
+                    
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <ul class="list"></ul>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"
+    ></script>
+    <script>
+        $('#date1').datetimepicker({
+          date:null, //一開始輸入框的日期為空
+          format: 'YYYY-MM-DD', //日期的顯示格式
+          locale: moment.locale('zh-tw'), //國別
+          minDate: moment().add(0,'days'), //顯示最小天數
+          maxDate: moment().add(30,'days'), //顯示最大天數，30為最大的顯示範圍為一個月為限
+            
+        });
+        const submitBtn = document.querySelector('[data-action="submit"]');
+            submitBtn.addEventListener("click", processFormData);
+
+        
+        
+    </script>
+</body>
+</html>
